@@ -13,7 +13,7 @@ public class Controller {
     private final CorporationComponent corporationComponent;
 
     @PostMapping(value = "/api/main/token", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ActionRs> createToken(@RequestBody RegisterCompanyRq createTokenRq) {
+    public ResponseEntity<ActionRs> createToken(@RequestBody RegisterCompanyRq createTokenRq) throws Exception {
         System.out.println(createTokenRq.toString());
         return ResponseEntity.ok(corporationComponent.registerCompany(createTokenRq.getCompanyName(), createTokenRq.getTokenName()));
     }

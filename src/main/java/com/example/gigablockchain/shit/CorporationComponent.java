@@ -111,6 +111,8 @@ public class CorporationComponent {
     }
 
     public RegisterUserRs enrollUser(String token, String username) throws Exception {
+        System.out.println("token: " + token);
+        System.out.println("username: " + username);
         if(token == null){
             throw new Exception("NOT_AUTHORISED");
         }
@@ -128,7 +130,10 @@ public class CorporationComponent {
         return new RegisterUserRs().setToken(user.getAuthToken()).setWallet(user.getWallet()).setTransactionId(getRandom256());
     }
 
-    public RegisterCompanyRs registerCompany(String cName, String tName){
+    public RegisterCompanyRs registerCompany(String cName, String tName) throws Exception {
+        if(companyName != null){
+            throw new Exception("ALREADY_REGISTERED");
+        }
         companyName = cName;
         tokenName = tName;
         RegisterCompanyRs rs = new RegisterCompanyRs("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c" ,companyName, tokenName);
